@@ -9,3 +9,6 @@ The current features are to view the dictionary, add an entry and to remove an e
 
 ### Working on
 My next step is to make the program read and write to a text file that way it is possible to actually save the data. - 💾
+
+## Bugs
+The program can only run after you open the entire folder, so that it knows where the "data.txt" file is :/
