@@ -1,40 +1,43 @@
+# Json for saving and loading dictionaries to the txt file
+import json
+
+# Bool to trigger the program on and off
 program = True
 
-storage = {
-    
-    1: {"Name": "Karim", "Age": "23", "Occupation": "Courier"},
-    2: {"Name": "Essa", "Age": "16", "Occupation": "Student"}
-
-    }
-
+# Starting the program, and the main menue
 while program:
-    int_input = int(input("\nView the database: 1,\nAdd an entry: 2,\nRemove an entry: 3\n:"))
+    int_input = int(input("\nView the database: 1,\nAdd an entry: 2,\nRemove an entry: 3\nExit the program: 4\n:"))
 
     if int_input == 1:
-        print(storage) 
+        
+        with open("data.txt", "r+") as file:
+            storage = file.read()
+            print(storage)
+            print() 
 
-        print() 
-
-    elif int_input == 2:
+    if int_input == 2:
         index = int(input("Enter your index number!: "))
         new_name = input("Enter your name!: ")
         new_age = int(input("Enter your age!: "))
         new_occ = input("What's your occupation!: ")
+            
+        new_entry = {"Index": index, "Name": new_name, "Age": new_age, "Occupation": new_occ}
 
-        storage[index] = {"Name": new_name, "Age": new_age, "Occupation": new_occ}
-        
-        print()
-        
+        with open("data.txt", "a+") as file:
+            file.write(json.dumps(new_entry) + "\n")
+            print()
 
-    elif int_input == 3:
+    if int_input == 3:
+        #Delete function not usable yet
         pop_num = int(input("Enter the index number you wish to remove!: "))
 
         storage.pop(pop_num)
 
         print()
 
-    else:
-        print("Error, you haven't selected a number")
+    if int_input == 4:
+        program = False
+
 
 
 #I'm pretty sure all the indentation above is not accurate :/
